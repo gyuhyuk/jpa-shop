@@ -4,9 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import jpabook.jpashop.domain.Movie;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.*;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -17,18 +15,15 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Movie movie = new Movie();
-            movie.setDirector("aaaa");
-            movie.setActor("bbbb");
-            movie.setName("바람과함께사라지다");
-            movie.setPrice(10000);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
 
-            em.persist(movie);
+            em.persist(book);
 
             em.flush();
             em.clear();
 
-            em.find(Movie.class, movie.getId());
 
             tx.commit();
         } catch (Exception e) {
